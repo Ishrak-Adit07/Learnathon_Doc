@@ -3,8 +3,7 @@
 ## Authentication & User Management
 
 ### User Registration
-**POST**
-<span style="color: green">`/api/auth/register`</span>  
+**POST** `/api/auth/register`
 Register a new user and return JWT token
 
 ### User Login
@@ -35,17 +34,33 @@ Secure password change
 **POST** `/api/auth/reset-password`  
 Sends email with reset link
 
+### Profile Picture Upload
+**POST** `/api/users/profile-picture/{userId}`
+User uploads a profile picture.
+
+### Profile Picture Change
+**PUT** `/api/users/profile-picture/{userId}`
+User changes a profile picture.
+
 ## Crop Selection
 
-### Get Available Crops
+### Fetch Available Crops
 **GET** `/api/crops`  
 Fetch all available crops
 
+### Fetch Selective Crops
+**GET** `/api/crops?query-param=value`  
+Fetch crops filtered by certain parameters
+
+### Fetch Crop Details 
+**GET** `/api/crops/{cropId}`
+Fetch detailed information about a specific crop (e.g., growing season, location, etc.).
+
 ### Select Crops
 **POST** `/api/user-crops`  
-User selects multiple crops to track
+User selects multiple crops for planning
 
-### Get User Selected Crops
+### Fetch User Selected Crops
 **GET** `/api/user-crops/{userId}`  
 Fetch crops selected by a specific user
 
@@ -74,6 +89,35 @@ Retrieve logs for a specific crop of the user
 ### Fetch Daily Logs by Date
 **GET** `/api/daily-log/{userId}/date/{logDate}`  
 Fetch logs for a specific date
+
+### Update Daily Log 
+**PUT** `/api/daily-log/{userId}/{logId}`
+Allow users to update a previously submitted log entry if needed 
+(e.g., correct a mistake or add more details).
+
+### Delete Daily Log ?
+**DELETE** `/api/daily-log/{userId}/{logId}`
+Allow users to delete a specific log entry.
+
+### Search Daily Logs
+**GET** `/api/daily-log/{userId}/search`
+Enable users to search through their logs using keywords or specific terms (e.g., "fertilizer", "watering", etc.).
+
+### Fetch Logs by Activity Type 
+**GET** `/api/daily-log/{userId}/activity/{activityType}`
+Retrieve logs based on specific activity types (e.g., watering, fertilizing, harvesting, etc.).
+
+## Fetch Logs by Time Range 
+**GET** `/api/daily-log/{userId}/range`
+Allow users to fetch logs within a specific time range (e.g., last 7 days, last month, etc.).
+
+## Export Logs (CSV/PDF) 
+**GET** `/api/daily-log/{userId}/export`
+Allow users to export their logs to a CSV or PDF format for reporting or offline use.
+
+## Fetch Crop-Specific Activity Statistics 
+**GET** `/api/daily-log/{userId}/{cropId}/statistics`
+Provide statistics for the user's activity on a particular crop (e.g., total watering times, fertilizers used, etc.).
 
 ## Chat System
 
