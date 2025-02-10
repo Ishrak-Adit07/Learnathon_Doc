@@ -223,9 +223,19 @@ Admin deletes any user account
 **DELETE** `/api/admin/officer/{userId}`  
 Admin deletes any officer account
 
-### Get System Logs
+### Fetch System Logs
 **GET** `/api/logs`  
 Fetch application logs (admin-only)
+
+## Weather APIs
+
+### Fetch Real-time Weather Information
+**GET** `/api/weather/now`  
+Fetch real-time temperature, humidity and similars.
+
+### Fetch Weather Forecast Information
+**GET** `/api/weather/forecast`  
+Fetch temperature, humidity and similar information for upcoming days.
 
 ## Miscellaneous
 
