@@ -194,6 +194,67 @@ CREATE INDEX idx_chat_sent_at ON Chat(sent_at);
 CREATE INDEX idx_alerts_user_id ON Alerts(user_id);
 ```
 
+## Version 3.0.0: Detailed Alert Management
+
+### New Requirements
+- **More control over Alerts and Notifications**
+
+### Schema Updates
+```sql
+CREATE TYPE alert_type_enum AS ENUM ('task', 'crop', 'weather');
+CREATE TYPE priority_enum AS ENUM ('low', 'medium', 'high');
+CREATE TYPE task_type_enum AS ENUM ('water plants', 'fertilizer');
+CREATE TYPE weather_type_enum AS ENUM ('draught', 'flood', 'storm', 'heatwave');
+```
+
+```sql
+CREATE TABLE Alerts (
+    id UUID PRIMARY KEY,
+    user_id UUID NOT NULL,
+    alert_type alert_type_enum NOT NULL,
+    priority priority_enum NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    read_at TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+```
+
+```sql
+CREATE TABLE TaskAlerts (
+    alert_id UUID PRIMARY KEY,
+    task_type task_type_enum NOT NULL,
+    alert_text TEXT NOT NULL,
+    due_time TIMESTAMP NOT NULL,
+    FOREIGN KEY (alert_id) REFERENCES Alerts(id) ON DELETE CASCADE
+);
+```
+
+```sql
+CREATE TABLE CropAlerts (
+    alert_id UUID PRIMARY KEY,
+    crop_id UUID NOT NULL,
+    alert_text TEXT NOT NULL,
+    FOREIGN KEY (alert_id) REFERENCES Alerts(id) ON DELETE CASCADE,
+    FOREIGN KEY (crop_id) REFERENCES crops(id) ON DELETE CASCADE
+);
+```
+
+```sql
+CREATE TABLE WeatherAlerts (
+    alert_id UUID PRIMARY KEY,
+    weather_type weather_type_enum NOT NULL,
+    forecasted_at TIMESTAMP NOT NULL,
+    FOREIGN KEY (alert_id) REFERENCES Alerts(id) ON DELETE CASCADE
+);
+```
+
+## Indexing and Optimization
+```sql
+CREATE INDEX idx_users_email ON Users(email);
+CREATE INDEX idx_chat_sent_at ON Chat(sent_at);
+CREATE INDEX idx_alerts_user_id ON Alerts(user_id);
+```
+
 ---
 
 ## Final Schema
