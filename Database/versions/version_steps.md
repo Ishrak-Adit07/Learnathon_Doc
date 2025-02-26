@@ -174,6 +174,19 @@ CREATE TABLE Chat_Session (
 );
 ```
 
+## Version 2.4.0: Alert Read Mark
+
+### New Requirements
+- **Mark Alerts as Read**
+
+### Schema Updates
+
+#### Alerts Table
+```sql
+ALTER TABLE Alerts
+ADD COLUMN read_at TIMESTAMP;
+```
+
 ## Indexing and Optimization
 ```sql
 CREATE INDEX idx_users_email ON Users(email);

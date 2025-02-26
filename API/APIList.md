@@ -47,6 +47,7 @@ User changes a profile picture.
 ### Fetch Available Crops
 **GET** `/api/crops`  
 Fetch all available crops
+DONE
 
 ### Fetch Selective Crops
 **GET** `/api/crops?query-param=value`  
@@ -55,18 +56,23 @@ Fetch crops filtered by certain parameters
 ### Fetch Crop Details 
 **GET** `/api/crops/{cropId}`
 Fetch detailed information about a specific crop (e.g., growing season, location, etc.).
+DONE
 
 ### Select Crops
 **POST** `/api/user-crops`  
 User selects multiple crops for planning
+DONE
 
 ### Fetch User Selected Crops
 **GET** `/api/user-crops/{userId}`  
 Fetch crops selected by a specific user
+DONE
 
 ### Deselect Crops
-**DELETE** `/api/user-crops/{userId}/{cropId}`  
+**POST** `/api/user-crops/{userId}/{cropId}`  
+POST request since body is needed for batch deletion
 Remove crop from the user’s selection
+DONE
 
 ## Daily Logs (Elasticsearch)
 
@@ -164,26 +170,32 @@ Officer/user creates a disease or weather alert
 ### Fetch Unread Alerts for A User
 **GET** `/api/alerts/{userId}/unread`
 Fetch all unread alerts for a user.
+DONE
 
 ### Mark Alert as Read
 **PATCH** `/api/alerts/{alertId}/read`
 Mark an alert as read by the user.
+DONE
 
 ### Fetch All Alerts for A User
 **GET** `/api/alerts/{userId}`
 Fetch all alerts for a user.
+DONE
 
 ### Fetch Specific Alert for a User
 **GET** `/api/alert/{alertId}`  
 Retrieve certain alert assigned to a user
+DONE
 
 ### Fetch Alerts for a Specific Crop
 **GET** `/api/alerts/{cropId}`  
 Get alerts specific to a user’s crop
+DONE
 
 ### Fetch Alerts by Type
 **GET** `/api/alerts?type={type}`
 Filter alerts by type (e.g., disease, weather, task).
+DONE
 
 ### Update an Alert
 **PUT** `/api/alerts/{alertId}`
