@@ -10,7 +10,7 @@
 
 ## Project Description  
 
-### **Project - Nobanno**  
+### **Project**  
 *A Smart Farming Assistant for Optimized Agricultural Practices.*
 
 A mobile application, intended to empower underserved farmers by providing actionable insights and recommendations for improving their yield and agricultural practices.  
